@@ -25,7 +25,7 @@ $(document).ready(function(){
     var yelp = $("#inYelp");
 
     var newVendor = {
-        name: vendorName.val(),
+        vendorName: vendorName.val(),
         description: description.val(),
         product1: product1.val(),
         product2: product2.val(),
@@ -54,7 +54,7 @@ db.on("child_added", function (childSnap) {
        
 
     //add values to html
-    var newRow = "<tr><td>" + childSnap.val().name + "</td><td>" + childSnap.val().product1 + "</td><td>" + childSnap.val().address + "</td><td>" + childSnap.val().yelpReview + "</td></tr>"
+    var newRow = "<tr><td>" + childSnap.val().vendorName + "</td><td>" + childSnap.val().product1 + "</td><td>" + childSnap.val().address + "</td><td>" + childSnap.val().yelp + "</td></tr>"
     $('#topRow').append(newRow);
 
 }, function (errorObject) {
