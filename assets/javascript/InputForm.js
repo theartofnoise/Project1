@@ -21,10 +21,7 @@ $(document).ready(function(){
     var product1 = $("#inProduct1");
     var product2 = $("#inProduct2");
     var product3 = $("#inProduct3");
-    var product4 = $("#inProduct4");
-    var product5 = $("#inProduct5");
-    var product6 = $("#inProduct6");
-    var zipcode = $("#inZipcode");
+    var address = $("#inAddress");
     var yelp = $("#inYelp");
 
     var newVendor = {
@@ -33,10 +30,7 @@ $(document).ready(function(){
         product1: product1.val(),
         product2: product2.val(),
         product3: product3.val(),
-        product4: product4.val(),
-        product5: product5.val(),
-        product6: product6.val(),
-        zipcode: zipcode.val(),
+        address: address.val(),
         yelpReview: yelp.val()
 
     }
@@ -50,10 +44,7 @@ $(document).ready(function(){
     product1.val("");
     product2.val("");
     product3.val("");
-    product4.val("");
-    product5.val("");
-    product6.val("");
-    zipcode.val("");
+    address.val("");
     yelp.val("");
 
 });
@@ -63,7 +54,7 @@ db.on("child_added", function (childSnap) {
        
 
     //add values to html
-    var newRow = "<tr><td>" + childSnap.val().name + "</td><td>" + childSnap.val().product1 + "</td><td>" + childSnap.val().zipcode + "</td><td>" + childSnap.val().yelpReview + "</td></tr>"
+    var newRow = "<tr><td>" + childSnap.val().name + "</td><td>" + childSnap.val().product1 + "</td><td>" + childSnap.val().address + "</td><td>" + childSnap.val().yelpReview + "</td></tr>"
     $('#topRow').append(newRow);
 
 }, function (errorObject) {
