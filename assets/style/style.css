@@ -1,0 +1,53 @@
+body {
+    font-size: 16px; 
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+img {
+    height: 80px;
+}
+
+.banner {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dispensaries {
+    font-size: 35px;
+    color: grey;
+}
+
+#userInput {
+    width: 180px;
+    height: 36px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#submit-btn {
+    width: 100px;
+    padding: 5px;
+}
+.card-title {
+    color: white;
+    font-size: 22px;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.maps {
+    width: 400px;
+    height: 600px;
+}
+.nav-item {
+    font-size: 18px;
+    color: rgb(82, 80, 80);
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: white !important;
+}
+
