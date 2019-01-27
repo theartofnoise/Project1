@@ -113,3 +113,29 @@ footer {
     background-color: rgb(238, 197, 62);
     font-weight: bold;
   }
+
+/* Result for Beer */
+#beerResults{
+    padding: 20px;
+}
+#beerResults img{
+    width: 100px;
+    border-radius: 20px;
+    float:left;
+}
+#beerResults h3{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 60px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#beerResults h5{
+    font-weight: 800;
+    padding-bottom: 17px;
+}
+
+#beerResults p{
+    padding-bottom: 10px;
+}
