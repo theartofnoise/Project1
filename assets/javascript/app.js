@@ -1,3 +1,28 @@
+// API Brewery for all 
+var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?&key=442d82061216d902ec97f9787c20dd1b';
+$.ajax({
+    url: queryURL,
+    method: "GET",
+}).then(function(response){
+    console.log(response);
+});
+
+// API beer detail
+$("#submitButtonTypes").on("click", function(){
+    beer = $("#userInputTypes").val().trim();
+
+    var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?name=' + beer + '&key=442d82061216d902ec97f9787c20dd1b';
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function(response){
+        console.log(response);
+        var beer = response.data[0]; 
+        $("#beerResults").html("<div class='card'><div class='card-header'><img class='resultImage' src="+ beer.labels.contentAwareMedium+" alt=''><h3>"+ beer.name+"</h3></div><div class='card-body'><h5>"+beer.style.name+"</h5><p class='card-text'>"+beer.description+"</p><a href='#' class='btn btn-primary'>Find location</a></div></div>")
+    });
+})
+
+
 // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
@@ -40,24 +65,6 @@
     infoWindow.open(map);
     }
 
-// API Brewery for input
-$("#submitButton").on("click", function(){
-    beer = $("#userInput").val().trim();
 
-    var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?name=' + beer + '&key=442d82061216d902ec97f9787c20dd1b';
-    $.ajax({
-        url: queryURL,
-        method: "GET",
-    }).then(function(response){
-        console.log(response);
-    });
-})
 
-// API Brewery for all 
-var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?&key=442d82061216d902ec97f9787c20dd1b';
-$.ajax({
-    url: queryURL,
-    method: "GET",
-}).then(function(response){
-    console.log(response);
-});
+
