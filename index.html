@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <title>Potville</title>
+    <title>Beerville</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -13,63 +13,196 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Google Front -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
-                <img src="../Project1/assets/images/potville2.png" alt="Potville">
-            </a>
+            <img src="../Project1/assets/images/beerville2.png" alt="Beerville" id="logo">
+        </a>
+        <!-- End of logo -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home</a>
-                <a class="nav-item nav-link" href="#">Medical</a>
-                <a class="nav-item nav-link" href="#">Contact</a>
+                <a class="nav-item nav-link" href="#banner">Home</a>
+                <a class="nav-item nav-link" href="#quote">Breweries</a>
+                <a class="nav-item nav-link" href="#mvp">Beers</a>
+                <a class="nav-item nav-link" href="#">Register</a>
             </div>
          </div>
     </nav>
-    
+    <!-- End of nav bar -->
+
+    <!-- Banner -->
 	<div class="container-fluid banner">
-            <img src="../Project1/assets/images/main_image.jpeg" class="img-fluid banner" alt="potville">
+        <img src="../Project1/assets/images/background1.jpg" class="img-fluid" id="banner" alt="Beerville">
     </div>
+    <!-- End of banner container -->
     <br>
     <br>
-	<div class="dispensaries text-center" >
-        SPOT THE POT
+    <br>
+    <!-- Quote container -->
+    <div class="container" id="quote">
+        <div class="row">
+            <div class="col-xs-12 center-block text-center quote">
+                “In wine there is wisdom, in beer there is Freedom, and in water there is bacteria.” – Benjamin Franklin – 
+            </div>
+        </div>
     </div>
+<<<<<<< HEAD
     
     <form class="text-center">
 		<input type="text" id="userInput" placeholder="Zip Code">
 		<button type="submit" id="submitButton" class="btn btn-dark">Submit</button>
     </form>
+=======
+    <!-- End of quote container -->
     <br>
-	<div class="row card-row">
+    <br>
+    <br>
+    <!-- User brewery search input section-->
+    <div class="container-fluid">
+        <div class="text-center typewriter" >
+            <h1 id="locator">LOCATE A BREWERY</h1>
+        </div>
+        <br>
+        <div class="text-center">
+            <input type="text" id="userInput" placeholder="Zip Code">
+            <button type="submit" id="submitButton" class="btn btn-warning">Submit</button>
+        </div>   
+    </div>
+    <!-- End of brewery search input section -->
+    <br>
+>>>>>>> 9605fcc388e49836d7fc7e8841150faf3a0b37e4
+    <br>
+    <!-- Search results container -->
+    <div class="container-fluid results">
+        <div class="row card-row">
             <div class="col-sm-12 col-lg-8">
-                <div class="card border-dark">
-                    <div class="card-heading bg-dark">
-                        <h4 class="card-title">Local dispensaries</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover" id="dispensaries-list">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Tel</th>
-                                    <th>Hours</th>
-                                    <th>Website</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-4">
+                <!-- Search results map div-->
                 <div id="map"></div>
             </div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAipRGvfEcH30zU8l2XMdvrtycHpV55g&callback=initMap"></script></script>
+        <!-- Search results list of breweries -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card border-dark">
+                <div class="card-heading bg-dark">
+                    <h4 class="card-title">Search results</h4>
+                </div>
+                <div class="container-fluid breweryResults">
+                    
+                </div>
+            </div>
+        </div>    
+    </div>
+    <!-- End of search results container -->
+    <br>
+    <br>
+    <br>
+    <!-- Start of beer types container -->
+    <div class="container-fluid">
+        <div class="text-center typewriter" >
+            <h1 id="mvp">BEERS MVP</h1>
+        </div>
+        <br>
+        <br>
+        <div class="card-deck">
+            <div class="card">
+              <img class="card-img-top mvpImage" src="https://www.deschutesbrewery.com/wp-content/uploads/2016/08/IPADay-Infographic_huge1.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title mvpTitle">IPA</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos laboriosam quae ratione sapiente reprehenderit blanditiis quasi tempore debitis. Saepe doloribus suscipit magnam, quibusdam illum rerum blanditiis sequi est eos reiciendis?</p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top mvpImage" src="https://www.deschutesbrewery.com/wp-content/uploads/2015/06/ale-and-lager1-1600x1066.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title mvpTitle">Ale vs. Lager</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus odit eius alias, accusantium quam, quos pariatur dolor dignissimos officia illum omnis itaque sapiente obcaecati quo? Similique deleniti aliquam tenetur ut.</p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top mvpImage" src="https://www.bbcgoodfood.com/sites/default/files/stout-main.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title mvpTitle">Guiness</h5>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum nulla, cupiditate esse fugit unde aliquam quia nemo quam at? Nesciunt velit possimus modi animi eum consequatur aspernatur vero ratione sed.</p>
+              </div>
+            </div>
+          </div>
+    </div>
+     <!--End of beer types container -->
+     <br>
+     <br>
+     <br>
+     <!--Start of beer type input search section -->
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-6 text-right typewriter" >
+            <h1 id="beerTypes">FIND YOUR POISON</h1>
+        </div>
+        <br>
+        <div class="text-center">
+            <input type="text" id="userInputTypes" placeholder="Beer Type">
+            <button type="submit" id="submitButtonTypes" class="btn btn-warning">Submit</button>
+        </div>
+        <div class="container">
+            <div id="beerResults"></div>
+        </div>
+        
+    </div>
+    <!--End of beer type input search section -->
+    <!-- Start of Register Breweries -->
+    <div class="container-fluid results">
+            <div class="row card-row">
+                <div class="col-sm-12 col-lg-8">
+                    <div class="breweryRegister">
+                        <h1 class="text-center">Register your Brewery</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name Brewery</label>
+                                <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" placeholder="Ex: BlackMarket"> 
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Address</label>
+                                <input type="text" class="form-control" id="addressInput" placeholder="151 SE 1st St">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">City</label>
+                                <input type="text" class="form-control" id="cityInput" placeholder="Miami">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Zip code</label>
+                                <input type="text" class="form-control" id="zipCodeInput" placeholder="33131">
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            <!-- render beer -->
+            <div class="col-sm-12 col-lg-4">
+                    <div id="resultBrewery"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of Register Breweries -->
+    <br>
+    <br>
+    <br>
+    <!--Footer -->
+    <footer class="text-center">
+        beerville ©
+    </footer>
+    <!--End of footer -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAipRGvfEcH30zU8l2XMdvrtycHpV55g&callback=initMap"></script>
     <!-- Link app.js -->
     <script type="text/javascript" src="./assets/javascript/app.js"></script>
+
     </body>
 </html>
