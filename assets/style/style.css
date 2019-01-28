@@ -139,3 +139,26 @@ footer {
 #beerResults p{
     padding-bottom: 10px;
 }
+/* brevery Register */
+.breweryRegister{
+    padding: 20px;
+}
+
+.breweryRegister h1{
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.card-titleBewery{
+    color: black;
+    font-size: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#addressBrewery{
+    padding-bottom: 10px;
+}
+
+.brewery-card{
+    margin: 10px;
+}
