@@ -34,7 +34,7 @@
                 <a class="nav-item nav-link" href="#banner">Home</a>
                 <a class="nav-item nav-link" href="#quote">Breweries</a>
                 <a class="nav-item nav-link" href="#mvp">Beers</a>
-                <a class="nav-item nav-link" href="#">Register</a>
+                <a class="nav-item nav-link" href="#bottomRegister">Register</a>
             </div>
          </div>
     </nav>
@@ -109,21 +109,21 @@
               <img class="card-img-top mvpImage" src="https://www.deschutesbrewery.com/wp-content/uploads/2016/08/IPADay-Infographic_huge1.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title mvpTitle">IPA</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos laboriosam quae ratione sapiente reprehenderit blanditiis quasi tempore debitis. Saepe doloribus suscipit magnam, quibusdam illum rerum blanditiis sequi est eos reiciendis?</p>
+                <p class="card-text">The term "pale ale" originally denoted an ale brewed from pale malt. Among the first brewers known to export beer to India was George<span id="dots1">...</span><span id="more1"> Hodgson's Bow Brewery, on the Middlesex-Essex border. Bow Brewery beers became popular among East India Company traders in the late 18th century because of the brewery's location near the East India Docks. Demand for the export style of pale ale, which had become known as India pale ale, developed in England around 1840 and it later became a popular product there. IPAs have a long history in Canada and the United States, and many breweries there produce a version of the style.</span></p><p class="read-more "><button class="btn btn-warning btn-sm" onclick="readMoreLess(1)" id="readMore1">Read more</button></p>
               </div>
             </div>
             <div class="card">
               <img class="card-img-top mvpImage" src="https://www.deschutesbrewery.com/wp-content/uploads/2015/06/ale-and-lager1-1600x1066.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title mvpTitle">Ale vs. Lager</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus odit eius alias, accusantium quam, quos pariatur dolor dignissimos officia illum omnis itaque sapiente obcaecati quo? Similique deleniti aliquam tenetur ut.</p>
+                <p class="card-text">For the average beer drinker, the difference between an ale and a lager comes down to how the beer looks, smells, and tastes. Ales<span id="dots2">...</span><span id="more2"> tend to be fruity-estery, while lagers are clean-tasting and frequently described as "crisp." But to a brewer, the difference is more fundamental than that. It's not color, or flavor, or aroma, or hop/grain/malt varietals or even water hardness that separates a lager from an ale. Simply put, lagers use an entirely different type of yeast during fermentation. All of the knock-on effects -- from different flavors and aromas to decreased fermentation temperatures -- arise from this difference. You'll hear some beer pedants describe the difference as "top-fermenting" (ale) vs. "bottom-fermenting" (lager) yeast, which is generally accurate, but useless to those who have no interest or experience with brewing.</span></p><p class="read-more "><button class="btn btn-warning btn-sm" onclick="readMoreLess(2)" id="readMore2">Read more</button></p>
               </div>
             </div>
             <div class="card">
-              <img class="card-img-top mvpImage" src="https://www.bbcgoodfood.com/sites/default/files/stout-main.png" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title mvpTitle">Guiness</h5>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum nulla, cupiditate esse fugit unde aliquam quia nemo quam at? Nesciunt velit possimus modi animi eum consequatur aspernatur vero ratione sed.</p>
+                <img class="card-img-top mvpImage" src="https://www.bbcgoodfood.com/sites/default/files/stout-main.png" alt="Card image cap">
+                <div class="card-body">
+                        <h5 class="card-title mvpTitle">Guiness</h5>
+                  <p class="card-text" id="guiness" >Guinness' 'burnt' flavour derives from malted barley and roasted unmalted barley, a relatively modern development, not<span id="dots3">...</span><span id="more3"> becoming part of the grist until the mid-20th century. For many years, a portion of aged brew was blended with freshly brewed beer to give a sharp lactic acid flavour. Although Guinness's palate still features a characteristic "tang", the company has refused to confirm whether this type of blending still occurs. The draught beer's thick, creamy head comes from mixing the beer with nitrogen and carbon dioxide. It is popular with the Irish, both in Ireland and abroad. In spite of declining consumption since 2001, it is still the best-selling alcoholic drink in Ireland where Guinness & Co. Brewery makes almost €2 billion worth of the beverage annually.</span></p><p class="read-more "><button class="btn btn-warning btn-sm" onclick="readMoreLess(3)" id="readMore3">Read more</button></p>
               </div>
             </div>
           </div>
@@ -154,7 +154,7 @@
             <div class="row card-row">
                 <div class="col-sm-12 col-lg-8">
                     <div class="breweryRegister">
-                        <h1 class="text-center">Register your Brewery</h1>
+                        <h1 class="text-center" id="bottomRegister" >Register your Brewery</h1>
                         <form>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name Brewery</label>
@@ -172,7 +172,7 @@
                                 <label for="exampleInputPassword1">Zip code</label>
                                 <input type="text" class="form-control" id="zipCodeInput" placeholder="33131">
                             </div>
-                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                            <button id="submit" type="submit" class="btn btn-warning">Submit</button>
                         </form>
                     </div>
                 </div>
