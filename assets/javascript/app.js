@@ -1,3 +1,18 @@
+// Function lat to long
+function codeAddress(strAddress) {
+    geocoder.geocode( { 'address': strAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
 // Database
   // Initialize Firebase
   var config = {
@@ -36,20 +51,27 @@ $("#submit").on("click", function(event){
     console.log(breweries.zipCode);
     $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been register <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
 });
-
+var addressAray = [];
 // function if you want appear all breweries from your dataBase
     database.ref().on("child_added", function(childSnapshot) {    
     console.log(childSnapshot.val());
-
+    
     var newRecord=childSnapshot.val();
     var name = newRecord.name;
     var city = newRecord.city;
     var zipCode = newRecord.zipCode;
     var address = newRecord.address;
-
+    var completeAdress = address +" "+ city+" "+ zipCode; 
+    addressAray.push(completeAdress)
+    
+    for (i = 0; i < addressAray.length; i++) {
+        codeAddress(addressAray[i]);
+    }
+    
     $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span></div></div>");
 
     });
+
 // API Brewery for all 
 var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/breweries?&key=442d82061216d902ec97f9787c20dd1b';
 $.ajax({
@@ -81,13 +103,13 @@ $("#submitButtonTypes").on("click", function(){
     // locate you.
     var map, infoWindow;
     function initMap() {
-
+    geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 25.767, lng: -80.203},
-        zoom: 10
+        zoom: 11
     });
     infoWindow = new google.maps.InfoWindow;
-
+  
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
