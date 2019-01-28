@@ -13,6 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Google Front -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -84,54 +86,7 @@
                     <h4 class="card-title">Search results</h4>
                 </div>
                 <div class="container-fluid breweryResults">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
-                <br>
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
-                <br>
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
-                <br>
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
-                <br>
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
-                <br>
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
-                <br> 
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Brewery">
-                        <div class="card-body">
-                            <p class="card-text">The brewery address and other contact information will be placed here.</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>    
@@ -192,6 +147,41 @@
         
     </div>
     <!--End of beer type input search section -->
+    <!-- Start of Register Breweries -->
+    <div class="container-fluid results">
+            <div class="row card-row">
+                <div class="col-sm-12 col-lg-8">
+                    <div class="breweryRegister">
+                        <h1>Brewery</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name Brewery</label>
+                                <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" placeholder="Ex: BlackMarket"> 
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Address</label>
+                                <input type="text" class="form-control" id="addressInput" placeholder="151 SE 1st St">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">City</label>
+                                <input type="text" class="form-control" id="cityInput" placeholder="Miami">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Zip code</label>
+                                <input type="text" class="form-control" id="zipCodeInput" placeholder="33131">
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            <!-- render beer -->
+            <div class="col-sm-12 col-lg-4">
+                    <div id="resultBrewery"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of Register Breweries -->
     <br>
     <br>
     <br>
@@ -203,5 +193,6 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAipRGvfEcH30zU8l2XMdvrtycHpV55g&callback=initMap"></script>
     <!-- Link app.js -->
     <script type="text/javascript" src="./assets/javascript/app.js"></script>
+
     </body>
 </html>
