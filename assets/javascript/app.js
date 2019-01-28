@@ -34,7 +34,7 @@ $("#submit").on("click", function(event){
     console.log(breweries.address);
     console.log(breweries.city);
     console.log(breweries.zipCode);
-    $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been register</h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'>Name: "+breweries.name+"</h5><p id='addressBrewery' class='card-text'>Address: "+breweries.address+"</p><span id='city' class='card-link'>City: "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
+    $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been register <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
 });
 
 // function if you want appear all breweries from your dataBase
@@ -47,7 +47,7 @@ $("#submit").on("click", function(event){
     var zipCode = newRecord.zipCode;
     var address = newRecord.address;
 
-    $(".breweryResults").append("<div class='card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'>Name: "+name+"</h5><p id='addressBrewery' class='card-text'>Address: "+address+"</p><span id='city' class='card-link'>City: "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span></div></div>");
+    $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span></div></div>");
 
     });
 // API Brewery for all 
