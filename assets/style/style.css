@@ -41,6 +41,7 @@ input {
     padding-left: 30px;
     padding-top: 10px;
 }
+#more1, #more2, #more3 {display: none;}
 
 .nav-item {
     font-size: 18px;
