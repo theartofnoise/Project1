@@ -41,6 +41,10 @@ input {
     padding-left: 30px;
     padding-top: 10px;
 }
+#more1, #more2, #more3 {display: none;}
+#readMore1, #readMore2, #readMore3 {
+    margin-top: 15px;
+}
 
 .nav-item {
     font-size: 18px;
