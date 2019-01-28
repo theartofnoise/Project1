@@ -117,6 +117,7 @@ $("#submitButtonTypes").on("click", function(){
     infoWindow.open(map);
     }
 
+    //more and less buttons for beer types
     function readMoreLess(x) {
         var dots = document.getElementById("dots"+x);
   var moreText = document.getElementById("more"+x);
