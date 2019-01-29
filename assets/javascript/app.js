@@ -60,6 +60,7 @@ $("#submit").on("click", function(event){
     $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been register <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
 });
 var addressAray = [];
+var nameArray = []
 // function if you want appear all breweries from your dataBase
     database.ref().on("child_added", function(childSnapshot) {    
     console.log(childSnapshot.val());
@@ -75,10 +76,10 @@ var addressAray = [];
     
     // push address inside my array 
     addressAray.push(completeAdress)
-    
+    nameArray.push(name)
     for (i = 0; i < addressAray.length; i++) {
-        codeAddress(addressAray[i], name);
-       
+        codeAddress(addressAray[i], nameArray[i]);
+       console.log(nameArray[i]);
     }
     
     $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span></div></div>");
