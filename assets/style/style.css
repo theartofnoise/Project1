@@ -51,8 +51,13 @@ input {
     font-weight: bold;
     color: black !important;
 }
-#banner {background-position: center bottom; }
+#banner {
+    background-position: center bottom;
+}
 
+input {
+    caret-color: orange;
+}
 .navbar {
     background-color: white !important;
 }
