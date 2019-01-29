@@ -51,6 +51,7 @@ input {
     font-weight: bold;
     color: black !important;
 }
+#banner {background-position: center bottom; }
 
 .navbar {
     background-color: white !important;
