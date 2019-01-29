@@ -1,11 +1,19 @@
 // Function lat to long
-function codeAddress(strAddress) {
+function codeAddress(strAddress, name, ) {
     geocoder.geocode( { 'address': strAddress}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
             map: map,
-            position: results[0].geometry.location
+            position: results[0].geometry.location,
+        });
+        var contentString = '<h1>'+name+'</h1>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
         });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -61,11 +69,16 @@ var addressAray = [];
     var city = newRecord.city;
     var zipCode = newRecord.zipCode;
     var address = newRecord.address;
+    
+    // concatenate
     var completeAdress = address +" "+ city+" "+ zipCode; 
+    
+    // push address inside my array 
     addressAray.push(completeAdress)
     
     for (i = 0; i < addressAray.length; i++) {
-        codeAddress(addressAray[i]);
+        codeAddress(addressAray[i], name);
+       
     }
     
     $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span></div></div>");
