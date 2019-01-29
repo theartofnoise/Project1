@@ -41,12 +41,17 @@ input {
     padding-left: 30px;
     padding-top: 10px;
 }
+#more1, #more2, #more3 {display: none;}
+#readMore1, #readMore2, #readMore3 {
+    margin-top: 15px;
+}
 
 .nav-item {
     font-size: 18px;
     font-weight: bold;
     color: black !important;
 }
+#banner {background-position: center bottom; }
 
 .navbar {
     background-color: white !important;
@@ -113,3 +118,52 @@ footer {
     background-color: rgb(238, 197, 62);
     font-weight: bold;
   }
+
+/* Result for Beer */
+#beerResults{
+    padding: 20px;
+}
+#beerResults img{
+    width: 100px;
+    border-radius: 20px;
+    float:left;
+}
+#beerResults h3{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 60px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#beerResults h5{
+    font-weight: 800;
+    padding-bottom: 17px;
+}
+
+#beerResults p{
+    padding-bottom: 10px;
+}
+/* brevery Register */
+.breweryRegister{
+    padding: 20px;
+}
+
+.breweryRegister h1{
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.card-titleBewery{
+    color: black;
+    font-size: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#addressBrewery{
+    padding-bottom: 10px;
+}
+
+.brewery-card{
+    margin: 10px;
+}
