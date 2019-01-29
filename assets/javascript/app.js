@@ -92,7 +92,7 @@ $("#submitButtonTypes").on("click", function(){
     }).then(function(response){
         console.log(response);
         var beer = response.data[0]; 
-        $("#beerResults").html("<div class='card'><div class='card-header'><img class='resultImage' src="+ beer.labels.contentAwareMedium+" alt=''><h3>"+ beer.name+"</h3></div><div class='card-body'><h5>"+beer.style.name+"</h5><p class='card-text'>"+beer.description+"</p><a href='#' class='btn btn-primary'>Find location</a></div></div>")
+        $("#beerResults").html("<div class='card'><div class='card-header'><img class='resultImage' src="+ beer.labels.contentAwareMedium+" alt=''><h3>"+ beer.name+"</h3></div><div class='card-body'><h5>"+beer.style.name+"</h5><p class='card-text'>"+beer.description+"</p><a href='#' class='btn btn-warning'>Find location</a></div></div>")
     });
 })
 
