@@ -1,0 +1,188 @@
+
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    background-image: url("../images/background-.jpg");
+    background-attachment: fixed;
+    margin: 0;
+    margin-top: 50px;
+    padding: 0;
+    font-size: 16px; 
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    margin-bottom: 60px;
+}
+
+#bottomRegister{
+    margin-top: 10px;
+}
+
+#resultBrewery{
+    margin-top: 30px;
+}
+
+.registration{
+    background-color: rgba(255, 255, 255, 0.651);
+}
+
+/* #map {
+    height: 600px;
+}
+
+.quote {
+    font-size: 25px;
+    font-style: italic;
+} */
+
+input {
+    width: 180px;
+    height: 36px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#submit-btn {
+    width: 100px;
+    padding: 5px;
+}
+
+.card-title {
+    color: white;
+    font-size: 22px;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+#more1, #more2, #more3 {display: none;}
+#readMore1, #readMore2, #readMore3 {
+    margin-top: 15px;
+}
+
+.nav-item {
+    font-size: 18px;
+    font-weight: bold;
+    color: black !important;
+}
+
+#banner {
+    background-position: center bottom; 
+}
+
+.navbar {
+    background-color: white !important;
+}
+
+ .typewriter h1 {
+    font-size: 26px;
+    font-weight: bold;
+    display: inline-block;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .10em; /* Adjust as needed */
+    animation: 
+        typing 3.5s steps(30, end),
+        blink-caret .5s step-end infinite;
+} 
+  
+/* The typing effect */
+/*@keyframes typing {
+    from { max-width: 0;}
+    to { max-width: 100% }
+} */
+
+/* The typewriter cursor effect */
+ /*    @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
+
+.breweryResults {
+    height: 550px;
+    overflow-y: scroll;
+} */
+  
+#logo {
+    width: 150px;
+}
+
+.mvpTitle {
+    color: black;
+    font-weight: bold;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.mvpImage {
+    height: 260px;
+}
+
+#beerTypes {
+    padding-top: 10px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%; 
+    height: 60px;
+    line-height: 60px;
+    background-color: rgb(238, 197, 62);
+    font-weight: bold;
+  }
+
+/* Result for Beer */
+#beerResults{
+    padding: 20px;
+}
+#beerResults img{
+    width: 100px;
+    border-radius: 20px;
+    float:left;
+}
+#beerResults h3{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 60px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#beerResults h5{
+    font-weight: 800;
+    padding-bottom: 17px;
+}
+
+#beerResults p{
+    padding-bottom: 10px;
+}
+/* brevery Register */
+.breweryRegister{
+    padding: 20px;
+}
+
+.breweryRegister h1{
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.card-titleBewery{
+    color: black;
+    font-size: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#addressBrewery{
+    padding-bottom: 10px;
+}
+
+.brewery-card{
+    margin: 10px;
+}

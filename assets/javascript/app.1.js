@@ -25,17 +25,16 @@ function codeAddress(strAddress, name, ) {
     });
   }
 
-  // Initialize Firebase  (changed to new)
+  // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDvCXFCipOcB5dXVGyDu0VXTA71_Gc14z0",
-    authDomain: "beerville-70847.firebaseapp.com",
-    databaseURL: "https://beerville-70847.firebaseio.com",
-    projectId: "beerville-70847",
-    storageBucket: "beerville-70847.appspot.com",
-    messagingSenderId: "182244955437"
+    apiKey: "AIzaSyCIxk_GgddtGnn6261x5W0YJwJfTixOrb4",
+    authDomain: "beerville-40aec.firebaseapp.com",
+    databaseURL: "https://beerville-40aec.firebaseio.com",
+    projectId: "beerville-40aec",
+    storageBucket: "beerville-40aec.appspot.com",
+    messagingSenderId: "247160423496"
   };
   firebase.initializeApp(config);
-
 
 database = firebase.database();
 
@@ -53,31 +52,20 @@ $("#submit").on("click", function(event){
         zipCode: zipCode,
         city: city
     }
-    // pushing each brewery under breweries in db
-    var key = database.ref("brewery/").push(breweries).getKey();
-    database.ref("brewery/"+key).update({key:key});
+
+    var key = database.ref().push(breweries).getKey();
+    database.ref(key).update({key:key});
 
     console.log(breweries.name);
     console.log(breweries.address);
     console.log(breweries.city);
     console.log(breweries.zipCode);
-    $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been registered <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
-
-    $("#nameInput").val("")
-    $("#addressInput").val("")
-    $("#cityInput").val("")
-    $("#zipCodeInput").val("")
-    
-    clearResult = setTimeout(function(){ 
-        $("#resultBrewery").empty(); }, 5000);
-    
+    $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been register <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
 });
-
-
 var addressAray = [];
 var nameArray = []
 // function if you want appear all breweries from your dataBase
-    database.ref("brewery/").on("child_added", function(childSnapshot) {    
+    database.ref().on("child_added", function(childSnapshot) {    
     console.log(childSnapshot.val());
     
     var newRecord=childSnapshot.val();
