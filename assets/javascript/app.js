@@ -1,11 +1,15 @@
 // Function lat to long
 function codeAddress(strAddress, name, ) {
     geocoder.geocode( { 'address': strAddress}, function(results, status) {
+      // Maker Custom 
+      var image = 'assets/images/locationMarker.png'
+
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location,
+            icon: image
         });
         var contentString = '<h1>'+name+'</h1>';
 
@@ -21,7 +25,6 @@ function codeAddress(strAddress, name, ) {
     });
   }
 
-// Database
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCIxk_GgddtGnn6261x5W0YJwJfTixOrb4",
@@ -122,8 +125,8 @@ $("#submitButtonTypes").on("click", function(){
         center: {lat: 25.767, lng: -80.203},
         zoom: 11
     });
-    infoWindow = new google.maps.InfoWindow;
-  
+    var currentImage = 'assets/images/here.png'
+
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -131,10 +134,14 @@ $("#submitButtonTypes").on("click", function(){
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
-
+        var marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+            icon: currentImage
+        });
         infoWindow.setPosition(pos);
-        infoWindow.setContent('Here you are.');
-        infoWindow.open(map);
+        // infoWindow.setContent('Here you are.');
+        infoWindow.open(map,marker);
         map.setCenter(pos);
         }, function() {
         handleLocationError(true, infoWindow, map.getCenter());
