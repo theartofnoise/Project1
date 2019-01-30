@@ -38,6 +38,11 @@ html {
     /* display: inline-block;  //this will make it big across */
 }
 
+.dropdown{
+    padding-left: 8px;
+    color: gray;
+}
+
 input {
     width: 180px;
     height: 36px;
