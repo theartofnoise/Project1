@@ -62,7 +62,7 @@ database.ref("brewery/").on("child_added", function(childSnapshot) {
     var address = newRecord.address;
     var key = newRecord.key
     
-    $(".breweryResults").append("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <p><button type='button' class='btn btn-warning cardBtn beer' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
+    $(".breweryResults").append("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <p><button type='button' class='btn btn-warning cardBtn beerInput' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
 
    /*  //modal --- called by update info button
     updateModal = $(".modals").append("<div class='modal fade' id='infoModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><h5 class='modal-title' id='exampleModalLabel'>Update Brewery Info</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'> <form><div class='form-group'><input type='text' class='form-control' id='nameUpdate' placeholder='Brewery Name'></div><div class='form-group'><input type='text' class='form-control' id='addressUpdate' placeholder='Address'></div><div class='form-group'><input type='text' class='form-control' id='cityUpdate' placeholder='City'></div><div class='form-group'><input type='text' class='form-control' id='zipUpdate' placeholder='5 Digit Zip'></div> <button type='submit' class='btn btn-warning updateBrewery' data-dismiss='modal'>Confirm changes</button></div></div> </form> </div></div>") */
@@ -72,7 +72,7 @@ database.ref("brewery/").on("child_added", function(childSnapshot) {
 
 });
 
-//modal update button  --- 
+//update info button on card  --- 
 $(document).on("click", ".update", function(event){
     event.preventDefault();
      var updateId = $(this).attr('id'); 
@@ -81,6 +81,7 @@ $(document).on("click", ".update", function(event){
 
 });
 
+//modal update button  --- 
 $(document).on("click", ".updateBrewery", function(event){
     event.preventDefault();
     var name = $("#nameUpdate").val().trim();
@@ -119,9 +120,25 @@ database.ref("brewery/").on("child_changed", function(childSnapshot) {
     var city = newRecord.city;
     var zipCode = newRecord.zipCode;
     var address = newRecord.address;
-    var key = newRecord.key
+    var key = newRecord.key;
+    /* var beers = newRecord.beers;
+    console.log(beers) */
     
     $("."+brewId).replaceWith("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <p><button type='button' class='btn btn-warning cardBtn beers' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
+
+});
+var brewId="";
+database.ref("brewery/"+brewId+"beers/").on("child_changed", function(childSnapshot) {    
+    console.log(childSnapshot.val().beers);
+    
+    var newRecord=childSnapshot.val().beers;
+    /* var name = newRecord.name;
+    var city = newRecord.city;
+    var zipCode = newRecord.zipCode;
+    var address = newRecord.address;
+    var key = newRecord.key */
+    
+    /* $("."+brewId).replaceWith("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <p><button type='button' class='btn btn-warning cardBtn beers' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> "); */
 
 });
 
@@ -140,4 +157,78 @@ $(document).on("click", ".confirmRemove", function(event){
     $("."+brewId).remove();
     console.log(brewId)
     database.ref("brewery/"+brewId).remove();
+});
+
+//update beer button on card  --- 
+$(document).on("click", ".beerInput", function(event){
+    event.preventDefault();
+    brewId = $(this).attr('id'); 
+    console.log(brewId)
+    $(".updateBeer").attr('id', brewId) // adds brewery ID in modal submit button
+
+});
+
+//modal beer update button  --- 
+$(document).on("click", ".updateBeer", function(event){
+    event.preventDefault();
+    var beerName1 = $("#beerName1").val().trim();
+    var description1 = $("#beerDesc1").val().trim();
+    var type1 = $("#beerType1").val().trim();
+
+    var beerName2 = $("#beerName2").val().trim();
+    var description2 = $("#beerDesc2").val().trim();
+    var type2 = $("#beerType2").val().trim();
+
+    var beerName3 = $("#beerName3").val().trim();
+    var description3 = $("#beerDesc3").val().trim();
+    var type3 = $("#beerType3").val().trim();
+
+    /* var beerName4 = $("#beerName4").val().trim();
+    var description4 = $("#beerDesc4").val().trim();
+    var type4 = $("#beerType4").val().trim(); */
+    
+    brewId = $(this).attr('id'); 
+    console.log(brewId)
+    console.log(beerName1)
+    console.log(description1)
+    console.log(type1)
+
+    var newBeer1 = {
+        beerName: beerName1,
+        description: description1,
+        type: type1,
+    }
+    var newBeer2 = {
+        beerName: beerName2,
+        description: description2,
+        type: type2,
+    }
+    var newBeer3 = {
+        beerName: beerName3,
+        description: description3,
+        type: type3,
+    }
+    /* var newBeer4 = {
+        beerName: beerName4,
+        description: description4,
+        type: type4,
+    } */
+    if (beerName1!==""&&type1!=="") { 
+        var key1 = database.ref("brewery/"+brewId+"/beers/").push(newBeer1).getKey();
+        database.ref("brewery/"+brewId+"/beers/"+key1).update({key:key1});
+    }
+    if (beerName2!==""&&type2!=="") { 
+        var key2 = database.ref("brewery/"+brewId+"/beers/").push(newBeer2).getKey();
+        database.ref("brewery/"+brewId+"/beers/"+key2).update({key:key2});
+    }
+    if (beerName3!==""&&type3!=="") { 
+        var key3 = database.ref("brewery/"+brewId+"/beers/").push(newBeer3).getKey();
+        database.ref("brewery/"+brewId+"/beers/"+key3).update({key:key3});
+    }
+    /* if (beerName4!==""&&type3!=="") { 
+        var key4 = database.ref("brewery/"+brewId+"/beers/").push(newBeer4).getKey();
+        database.ref("brewery/"+brewId+"/beers/"+key4).update({key:key4});
+    } */
+    
+    $("#beerName1, #beerDesc1, #beerName2, #beerDesc2, #beerName3, #beerDesc3, #beerName4, #beerDesc4, #beerType1, #beerType2, #beerType3, #beerType4").val("")
 });
