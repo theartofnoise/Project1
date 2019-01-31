@@ -78,7 +78,7 @@ $("#submitButtonTypes").on("click", function(){
     beerName = $("#userInputTypes").val().trim();
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?name=' + beerName + '&key=442d82061216d902ec97f9787c20dd1b';
-
+    $("#userInputTypes").val("");
     $.ajax({
         url: queryURL,
         method: "GET",

@@ -182,3 +182,7 @@ footer {
 #otherResults p {
     font-weight: 600;
 }
+
+.showMe{
+    cursor: pointer;
+}
