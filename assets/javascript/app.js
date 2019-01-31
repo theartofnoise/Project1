@@ -98,12 +98,12 @@ $("#submitButtonTypes").on("click", function(){
                 console.log(response);
                 var newbeer = response.data;
                 // Random showing of the beer  
-                var ArrayRam = [];
+                var ArrayRandom = [];
                 var j = 0;
                 while(j < 6){
                     var ranNum = Math.floor(Math.random() * (newbeer.length));
-                    if (!ArrayRam.includes(ranNum)){
-                        ArrayRam.push(ranNum);
+                    if (!ArrayRandom.includes(ranNum)){
+                        ArrayRandom.push(ranNum);
                         j++;
                         if (newbeer[ranNum].labels && newbeer[ranNum].name != beerName){
                             $("#otherResults").append("<div class='col-3 text-center showMe' id='"+newbeer[ranNum].name+"'><img class='resultImage' src="+ newbeer[ranNum].labels.contentAwareMedium+" alt=''><p>"+newbeer[ranNum].name+"</p></div>");
@@ -141,12 +141,13 @@ $(document).on("click",".showMe", function(){
         }).then(function(response){
             console.log(response);
             var beer = response.data;
-            var ArrayRam = [];
+            var ArrayRandom = [];
             var j = 0;
+            // Random showing of the beer
             while(j < 6){
                 var ranNum = Math.floor(Math.random() * (beer.length));
-                if (!ArrayRam.includes(ranNum)){
-                    ArrayRam.push(ranNum);
+                if (!ArrayRandom.includes(ranNum)){
+                    ArrayRandom.push(ranNum);
                     j++;
                     if (beer[ranNum].labels){
                         $("#otherResults").append("<div class='col-3 text-center showMe' id='"+beer[ranNum].name+"'><img class='resultImage' src="+ beer[ranNum].labels.contentAwareMedium+" alt=''><p>"+beer[ranNum].name+"</p></div>");
