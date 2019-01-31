@@ -106,6 +106,7 @@ $("#submitButtonTypes").on("click", function(){
                         ArrayRandom.push(ranNum);
                         j++;
                         if (newbeer[ranNum].labels && newbeer[ranNum].name != beerName){
+                            alert("hello");
                             $("#otherResults").append("<div class='col-3 text-center showMe' id='"+newbeer[ranNum].name+"'><img class='resultImage' src="+ newbeer[ranNum].labels.contentAwareMedium+" alt=''><p>"+newbeer[ranNum].name+"</p></div>");
                         } 
                     }
