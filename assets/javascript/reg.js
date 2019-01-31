@@ -35,10 +35,10 @@ $("#submit").on("click", function(event){
     var key = database.ref("brewery/").push(breweries).getKey();
     database.ref("brewery/"+key).update({key:key});
 
-    /* console.log(breweries.name);
+    console.log(breweries.name);
     console.log(breweries.address);
     console.log(breweries.city);
-    console.log(breweries.zipCode); */
+    console.log(breweries.zipCode);
     $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been registered <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
 
     $("#nameInput").val("")
@@ -47,22 +47,35 @@ $("#submit").on("click", function(event){
     $("#zipCodeInput").val("")
     
     clearResult = setTimeout(function(){ 
-        $("#resultBrewery").empty(); }, 5000);
+        $("#resultBrewery").empty(); }, 3000);
     }
 });
 
 // display registered breweries
 database.ref("brewery/").on("child_added", function(childSnapshot) {    
-    //console.log(childSnapshot.val());
+//console.log(childSnapshot.val());
     
     var newRecord=childSnapshot.val();
     var name = newRecord.name;
     var city = newRecord.city;
     var zipCode = newRecord.zipCode;
     var address = newRecord.address;
-    var key = newRecord.key
+    var key = newRecord.key;
+    var beers = childSnapshot.val().beers;
+
     
-    $(".breweryResults").append("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <p><button type='button' class='btn btn-warning cardBtn beerInput' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
+    $(".breweryResults").append("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <div class='beerList beerList"+key+"'><p>Beers in our Database:</p><br> </div> <br><br> <p><button type='button' class='btn btn-warning cardBtn beerInput' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
+
+    if(beers!=""){
+        var beerArr = Object.values(beers)
+        console.log(beerArr)
+
+        for(i=0; i<beerArr.length; i++){
+            $(".beerList"+key).append("<div>- "+beerArr[i].beerName+", "+beerArr[i].type+"</div>")
+            console.log('logged object for the ' + i + 'loop:')
+            console.log( beerArr[i])
+        }
+    }
 
    /*  //modal --- called by update info button
     updateModal = $(".modals").append("<div class='modal fade' id='infoModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><h5 class='modal-title' id='exampleModalLabel'>Update Brewery Info</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'> <form><div class='form-group'><input type='text' class='form-control' id='nameUpdate' placeholder='Brewery Name'></div><div class='form-group'><input type='text' class='form-control' id='addressUpdate' placeholder='Address'></div><div class='form-group'><input type='text' class='form-control' id='cityUpdate' placeholder='City'></div><div class='form-group'><input type='text' class='form-control' id='zipUpdate' placeholder='5 Digit Zip'></div> <button type='submit' class='btn btn-warning updateBrewery' data-dismiss='modal'>Confirm changes</button></div></div> </form> </div></div>") */
@@ -125,12 +138,18 @@ database.ref("brewery/").on("child_changed", function(childSnapshot) {
     var beers = childSnapshot.val().beers;
     console.log(beers)
 
-    var beerArr = []
-    var beerArr = Object.values(beers)
-    console.log(beerArr)
     
-    $("."+brewId).replaceWith("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <p><button type='button' class='btn btn-warning cardBtn beers' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
 
+    //adding beer list before the buttons <div class='beerList beerList"+key+"'><p>Beers in our Database:</p><br> </div>
+    $("."+brewId).replaceWith("<div class='card brewery-card "+key+"'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'> "+name+"</h5><p id='addressBrewery' class='card-text'>"+address+"</p><span id='city' class='card-link'>"+city+",</span><span id='zipcode' class='card-link'> "+zipCode+"</span> <br><br> <div class='beerList beerList"+key+"'><p>Beers in our Database:</p><br> </div>  <br><br> <p><button type='button' class='btn btn-warning cardBtn beers' data-toggle='modal' data-target='#beerModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Beers</button><button type='button' class='btn btn-warning cardBtn update' data-toggle='modal' data-target='#infoModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Update Info</button><button type='button' class='btn btn-outline-secondary cardBtn remove' data-toggle='modal' data-target='#removeModal' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>Remove Brewery</button></p>  </div></div> ");
+
+    if(beers!=""){
+        var beerArr = Object.values(beers)
+        console.log(beerArr)
+        for(i=0; i<beerArr.length; i++){
+            $(".beerList"+key).append("<div>- "+beerArr[i].beerName+", "+beerArr[i].type+"</div>")
+        }
+    }
 });
 
 //remove button for each brewery
