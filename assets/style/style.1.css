@@ -51,13 +51,8 @@ input {
     font-weight: bold;
     color: black !important;
 }
-#banner {
-    background-position: center bottom;
-}
+#banner {background-position: center bottom; }
 
-input {
-    caret-color: orange;
-}
 .navbar {
     background-color: white !important;
 }
@@ -149,12 +144,6 @@ footer {
 #beerResults p{
     padding-bottom: 10px;
 }
-#beerResults h1{
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
 /* brevery Register */
 .breweryRegister{
     padding: 20px;
@@ -177,17 +166,4 @@ footer {
 
 .brewery-card{
     margin: 10px;
-}
-/* other beer card */
-#otherResults img {
-    width: 100px;
-    border-radius: 20px;
-    float: none;
-}
-#otherResults p {
-    font-weight: 600;
-}
-
-.showMe{
-    cursor: pointer;
 }

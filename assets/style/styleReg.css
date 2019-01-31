@@ -1,4 +1,3 @@
-
 html {
     position: relative;
     min-height: 100%;
@@ -6,7 +5,10 @@ html {
 
   body {
     min-height: 100%;
+    background-image: url("../images/background-.jpg");
+    background-attachment: fixed;
     margin: 0;
+    margin-top: 50px;
     padding: 0;
     font-size: 16px; 
     font-family: 'Montserrat', sans-serif;
@@ -14,13 +16,31 @@ html {
     margin-bottom: 60px;
 }
 
-#map {
-    height: 600px;
+#bottomRegister{
+    margin-top: 10px;
 }
 
-.quote {
-    font-size: 25px;
-    font-style: italic;
+#resultBrewery{
+    margin-top: 30px;
+}
+
+.registration{
+    background-color: rgba(255, 255, 255, 0.651);
+}
+
+.cardBtn{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.card-group{
+    display: flex;
+    /* display: inline-block;  //this will make it big across */
+}
+
+.dropdown{
+    padding-left: 8px;
+    color: gray;
 }
 
 input {
@@ -41,6 +61,7 @@ input {
     padding-left: 30px;
     padding-top: 10px;
 }
+
 #more1, #more2, #more3 {display: none;}
 #readMore1, #readMore2, #readMore3 {
     margin-top: 15px;
@@ -51,47 +72,20 @@ input {
     font-weight: bold;
     color: black !important;
 }
+
 #banner {
-    background-position: center bottom;
+    background-position: center bottom; 
 }
 
-input {
-    caret-color: orange;
-}
 .navbar {
     background-color: white !important;
 }
-
-.typewriter h1 {
-    font-size: 26px;
-    font-weight: bold;
-    display: inline-block;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .10em; /* Adjust as needed */
-    animation: 
-        typing 3.5s steps(30, end),
-        blink-caret .5s step-end infinite;
-}
   
-/* The typing effect */
-@keyframes typing {
-    from { max-width: 0;}
-    to { max-width: 100% }
-}
-
-/* The typewriter cursor effect */
-    @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange }
-}
-
 .breweryResults {
-    height: 550px;
-    overflow-y: scroll;
-}
+ /* overflow-y: scroll; */
+    overflow-x: scroll;
+    padding-right: 20px;
+} 
   
 #logo {
     width: 150px;
@@ -149,12 +143,6 @@ footer {
 #beerResults p{
     padding-bottom: 10px;
 }
-#beerResults h1{
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
 /* brevery Register */
 .breweryRegister{
     padding: 20px;
@@ -177,17 +165,4 @@ footer {
 
 .brewery-card{
     margin: 10px;
-}
-/* other beer card */
-#otherResults img {
-    width: 100px;
-    border-radius: 20px;
-    float: none;
-}
-#otherResults p {
-    font-weight: 600;
-}
-
-.showMe{
-    cursor: pointer;
 }
