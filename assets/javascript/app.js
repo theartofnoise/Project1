@@ -41,6 +41,21 @@ function codeAddress(strAddress, name, ) {
 
 database = firebase.database();
 
+
+//Submit input validation--------------------------------
+var submit = $("#submitButtonTypes");
+var beerType = $("#userInputTypes");
+
+beerType.on('keyup', function (event) {
+    isValidType = beerType[0].checkValidity();    
+    
+    if ( isValidType ) {
+        submit.attr("disabled",false);
+    } else {
+        submit.attr("disabled",true);
+    }
+  });
+
 //Submit button on push Brewery Shop.
 $("#submit").on("click", function(event){
     event.preventDefault();
