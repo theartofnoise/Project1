@@ -72,7 +72,6 @@ $("#submit").on("click", function(event){
     
     clearResult = setTimeout(function(){ 
         $("#resultBrewery").empty(); }, 5000);
-    
 });
 
 
@@ -116,20 +115,89 @@ $.ajax({
 });
 
 // API beer detail
-$("#submitButtonTypes").on("click", function(event){
-    event.preventDefault();
-    beer = $("#userInputTypes").val().trim();
+$("#submitButtonTypes").on("click", function(){
+    beerName = $("#userInputTypes").val().trim();
 
-    var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?name=' + beer + '&key=442d82061216d902ec97f9787c20dd1b';
+    var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?name=' + beerName + '&key=442d82061216d902ec97f9787c20dd1b';
+    $("#userInputTypes").val("");
     $.ajax({
         url: queryURL,
         method: "GET",
     }).then(function(response){
         console.log(response);
         var beer = response.data[0]; 
-        $("#beerResults").html("<div class='card'><div class='card-header'><img class='resultImage' src="+ beer.labels.contentAwareMedium+" alt=''><h3>"+ beer.name+"</h3></div><div class='card-body'><h5>"+beer.style.name+"</h5><p class='card-text'>"+beer.description+"</p><a href='#' class='btn btn-warning'>Find location</a></div></div>")
+        $("#beerResults").html("<div class='card'><div class='card-header'><img class='resultImage' src="+ beer.labels.contentAwareMedium+" alt=''><h3>"+ beer.name+"</h3></div><div class='card-body'><h5>"+beer.style.name+"</h5><p class='card-text'>"+beer.description+"</p><h1>Simular Beers</h1><div class='row' id='otherResults'></div></div></div>")
+            
+        // Result all Other Beer Simular
+            styleId = response.data[0].styleId ;
+            console.log(styleId);
+            var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?styleId='+ styleId +'&key=442d82061216d902ec97f9787c20dd1b';
+            $.ajax({
+                url: queryURL,
+                method: "GET",
+            }).then(function(response){
+                console.log(response);
+                var newbeer = response.data;
+                // Random showing of the beer  
+                var ArrayRam = [];
+                var j = 0;
+                while(j < 6){
+                    var ranNum = Math.floor(Math.random() * (newbeer.length));
+                    if (!ArrayRam.includes(ranNum)){
+                        ArrayRam.push(ranNum);
+                        j++;
+                        if (newbeer[ranNum].labels && newbeer[ranNum].name != beerName){
+                            $("#otherResults").append("<div class='col-3 text-center showMe' id='"+newbeer[ranNum].name+"'><img class='resultImage' src="+ newbeer[ranNum].labels.contentAwareMedium+" alt=''><p>"+newbeer[ranNum].name+"</p></div>");
+                        } 
+                    }
+                }
+            });
     });
 })
+
+// Show the Detail of the Beer was in the list of the other Beer  
+$(document).on("click",".showMe", function(){
+    var otherBeer = $(this).attr("id");
+    console.log(otherBeer);
+    
+    var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?name=' + otherBeer + '&key=442d82061216d902ec97f9787c20dd1b';
+
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function(response){
+        console.log(response);
+        var beer = response.data[0]; 
+        if(!beer.description){
+            beer.description = "Sorry We could not find description"
+        }
+        $("#beerResults").html("<div class='card'><div class='card-header'><img class='resultImage' src="+ beer.labels.contentAwareMedium+" alt=''><h3>"+ beer.name+"</h3></div><div class='card-body'><h5>"+beer.style.name+"</h5><p class='card-text'>"+beer.description+"</p><h1>Simular Beers</h1><div class='row' id='otherResults'></div></div></div>")
+
+        styleId = response.data[0].styleId ;
+        console.log(styleId);
+        var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?styleId='+ styleId +'&key=442d82061216d902ec97f9787c20dd1b';
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+        }).then(function(response){
+            console.log(response);
+            var beer = response.data;
+            var ArrayRam = [];
+            var j = 0;
+            while(j < 6){
+                var ranNum = Math.floor(Math.random() * (beer.length));
+                if (!ArrayRam.includes(ranNum)){
+                    ArrayRam.push(ranNum);
+                    j++;
+                    if (beer[ranNum].labels){
+                        $("#otherResults").append("<div class='col-3 text-center showMe' id='"+beer[ranNum].name+"'><img class='resultImage' src="+ beer[ranNum].labels.contentAwareMedium+" alt=''><p>"+beer[ranNum].name+"</p></div>");
+                    } 
+                }
+            }
+        });
+    });
+})
+
 // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
