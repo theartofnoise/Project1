@@ -99,28 +99,37 @@
                 </div>
                 <div class="modals">
                     <!-- Beer Info Modal -->
-                    <div class='modal fade' id='beerModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal fade' id='beerModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true'>
                             <div class='modal-dialog' role='document'>
                                 <div class='modal-content'>
                                     <div class='modal-header'>
-                                        <h5 class='modal-title' id='exampleModalLabel'>Add Beers to your Brewery</h5>
+                                        <h5 class='modal-title' id='exampleModalLabel'>Add Beers to your Brewery</h5><br>
                                         <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span>
                                         </button>
                                     </div>
                                     <div class='modal-body'> 
+                                            <div style="font-size:13px">You must have a name and type of beer for any entry</div>
+                                            <hr>
                                         <form>
                                             <div class='form-group'>
                                                 <input type='text' class='form-control' id='beerName1' placeholder='Beer Name'>
                                                 <input type='text' class='form-control' id='beerDesc1' placeholder='Beer Description'>
                                                 <span class="dropdown">Beer Type</span>
                                                 <select id="beerType1">
+                                                        <option value="">Select Type</option>
                                                         <option value="IPA">IPA</option>
                                                         <option value="Wheat Ale">Wheat Ale</option>
-                                                        <option value="Lager">Lager</option>
                                                         <option value="Blonde Ale">Blonde Ale</option>
+                                                        <option value="Amber Ale">Amber Ale</option>
+                                                        <option value="Golden Ale">Golden Ale</option>
+                                                        <option value="Belgian Ale">Belgian Ale</option>
+                                                        <option value="Special Ale">Special Ale</option>
+                                                        <option value="Lager">Lager</option>
                                                         <option value="Stout">Stout</option>
+                                                        <option value="Porter">Porter</option>
                                                         <option value="Pilsner">Pilsner</option>
-                                                        <option value="Weiss">Weiss</option>
+                                                        <option value="Hefeweizen">Hefeweizen</option>
+                                                        <option value="Sour">Sour</option>
                                                         <option value="Gose">Gose</option>
                                                         <option value="Specialty">Specialty</option>
                                                       </select>
@@ -130,13 +139,20 @@
                                                     <input type='text' class='form-control' id='beerDesc2' placeholder='Beer Description'>
                                                     <span class="dropdown">Beer Type</span>
                                                     <select id="beerType2">
+                                                            <option value="">Select Type</option>
                                                             <option value="IPA">IPA</option>
                                                             <option value="Wheat Ale">Wheat Ale</option>
-                                                            <option value="Lager">Lager</option>
                                                             <option value="Blonde Ale">Blonde Ale</option>
+                                                            <option value="Amber Ale">Amber Ale</option>
+                                                            <option value="Golden Ale">Golden Ale</option>
+                                                            <option value="Belgian Ale">Belgian Ale</option>
+                                                            <option value="Special Ale">Special Ale</option>
+                                                            <option value="Lager">Lager</option>
                                                             <option value="Stout">Stout</option>
+                                                            <option value="Porter">Porter</option>
                                                             <option value="Pilsner">Pilsner</option>
-                                                            <option value="Weiss">Weiss</option>
+                                                            <option value="Hefeweizen">Hefeweizen</option>
+                                                            <option value="Sour">Sour</option>
                                                             <option value="Gose">Gose</option>
                                                             <option value="Specialty">Specialty</option>
                                                           </select>
@@ -146,34 +162,50 @@
                                                         <input type='text' class='form-control' id='beerDesc3' placeholder='Beer Description'>
                                                         <span class="dropdown">Beer Type</span>
                                                         <select id="beerType3">
+                                                                <option value="">Select Type</option>
                                                                 <option value="IPA">IPA</option>
                                                                 <option value="Wheat Ale">Wheat Ale</option>
-                                                                <option value="Lager">Lager</option>
                                                                 <option value="Blonde Ale">Blonde Ale</option>
+                                                                <option value="Amber Ale">Amber Ale</option>
+                                                                <option value="Golden Ale">Golden Ale</option>
+                                                                <option value="Belgian Ale">Belgian Ale</option>
+                                                                <option value="Special Ale">Special Ale</option>
+                                                                <option value="Lager">Lager</option>
                                                                 <option value="Stout">Stout</option>
+                                                                <option value="Porter">Porter</option>
                                                                 <option value="Pilsner">Pilsner</option>
-                                                                <option value="Weiss">Weiss</option>
+                                                                <option value="Hefeweizen">Hefeweizen</option>
+                                                                <option value="Sour">Sour</option>
                                                                 <option value="Gose">Gose</option>
                                                                 <option value="Specialty">Specialty</option>
                                                               </select>
                                                     </div>
-                                                    <div class='form-group'>
+                                                    <!-- <div class='form-group'>
                                                             <input type='text' class='form-control' id='beerName4' placeholder='Beer Name'>
                                                             <input type='text' class='form-control' id='beerDesc4' placeholder='Beer Description'>
                                                             <span class="dropdown">Beer Type</span>
                                                             <select id="beerType4">
+                                                                    <option value="">Select Type</option>
                                                                     <option value="IPA">IPA</option>
                                                                     <option value="Wheat Ale">Wheat Ale</option>
-                                                                    <option value="Lager">Lager</option>
                                                                     <option value="Blonde Ale">Blonde Ale</option>
+                                                                    <option value="Amber Ale">Amber Ale</option>
+                                                                    <option value="Golden Ale">Golden Ale</option>
+                                                                    <option value="Belgian Ale">Belgian Ale</option>
+                                                                    <option value="Special Ale">Special Ale</option>
+                                                                    <option value="Lager">Lager</option>
                                                                     <option value="Stout">Stout</option>
+                                                                    <option value="Porter">Porter</option>
                                                                     <option value="Pilsner">Pilsner</option>
-                                                                    <option value="Weiss">Weiss</option>
+                                                                    <option value="Hefeweizen">Hefeweizen</option>
+                                                                    <option value="Sour">Sour</option>
                                                                     <option value="Gose">Gose</option>
                                                                     <option value="Specialty">Specialty</option>
                                                                   </select>
-                                                        </div>
-                                            <button type='submit' class='btn btn-warning updateBrewery' data-dismiss='modal'>Add Beer</button>
+                                                        </div> -->
+                                                        <hr>
+                                                        <div style="font-size:13px">You must have a name and type of beer for any entry</div><br>
+                                            <button type='submit' class='btn btn-warning updateBeer' data-dismiss='modal'>Add Beer</button>
                                         </div>
                                     </div>
                                      </form> 

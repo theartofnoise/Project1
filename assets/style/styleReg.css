@@ -43,6 +43,10 @@ html {
     color: gray;
 }
 
+.beerList{
+    line-height: 150%;
+}
+
 input {
     width: 180px;
     height: 36px;
