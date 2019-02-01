@@ -12,7 +12,7 @@ var config = {
 
 database = firebase.database();
 
-//Submit button on push Brewery Shop.
+/* //Submit button on push Brewery Shop.     DONT NEED THIS IN THIS FILE --- ON reg.js
 $("#submit").on("click", function(event){
     event.preventDefault();
     var name = $("#nameInput").val().trim();
@@ -38,22 +38,26 @@ $("#submit").on("click", function(event){
 
     
     clearResult = setTimeout(function(){ 
-        $("#resultBrewery").empty(); }, 5000);
+        $("#resultBrewery").empty(); }, 5000); 
     
-});
+});*/
 // Create Array for push inside all address and name 
 var addressAray = [];
 var nameArray = []
 // function if you want appear all breweries from your dataBase
 database.ref("brewery/").on("child_added", function(childSnapshot) {    
-    console.log(childSnapshot.val());
+    //console.log(childSnapshot.val());
     
     var newRecord=childSnapshot.val();
     var name = newRecord.name;
     var city = newRecord.city;
     var zipCode = newRecord.zipCode;
     var address = newRecord.address;
-    
+    var key = newRecord.key;  // added GS 2/1
+    var beers = childSnapshot.val().beers;// added GS 2/1
+    var comments = childSnapshot.val().comments;// added GS 2/1
+    console.log(comments)
+     
     // concatenate
     var completeAdress = address +" "+ city+" "+ zipCode; 
     
@@ -63,12 +67,74 @@ database.ref("brewery/").on("child_added", function(childSnapshot) {
     // make loop for each Address and name class function codeAddress from google map. 
     for (i = 0; i < addressAray.length; i++) {
         codeAddress(addressAray[i], nameArray[i]);
-       console.log(nameArray[i]);
+       console.log(nameArray[i]); 
     }
-    
-    $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span></div></div>");
+    // added GS 2/1 button and info modal Beers and comments
+    $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span> <hr><div><button type='button' class='btn btn-warning cardBtn brewInfo' data-toggle='modal' data-target='.bd-example-modal-lg"+key+"' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>More Info</button></div> </div></div>  <!-- start of modal --> <div class='modal fade bd-example-modal-lg"+key+"' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'><div class='modal-dialog modal-lg'><div class='modal-content'>   <!-- -->   <div class='card brewery-card'><div class='card-body infoBody'><div class='infoHeader'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-bookmark'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+", "+city+", "+zipCode+"</span></div> <hr><div> <a class='modalLinks ourBeerLink' href='#breweryResults'>Our Craft Beer</a> || <a class='modalLinks commentsLink' href='#breweryResults'>Comments</a></div><hr> <!--beer list to be shown on modal --> <div class='beerList beerList"+key+"'> </div> <!--comments / hidden until clicked --> <div class='brewComments brewComments"+key+"'>Leave us a comment! <hr><form><div class='form-group'><label for='comment'></label><textarea type='text' class='form-control commentInput commentInput"+key+"' id='commentInput"+key+"' placeholder='Your comment' style='height:80px; width:100%'></textarea></div><button id='"+key+"' type='submit' class='btn btn-warning submitComment'>Leave your comment</button></form> <hr> Comments: </div> <!-- -->   </div></div></div>");
 
-    });
+    //added beers to info modal GS 2/1
+    if(beers!=""){
+        var beerArr = Object.values(beers)
+
+        for(i=0; i<beerArr.length; i++){
+            $(".beerList"+key).append("<div><i class='fas fa-beer'></i> "+beerArr[i].beerName+". <p class='beerType'>Type: "+beerArr[i].type+"</p><p class='details'>The Details: "+beerArr[i].description+"</div><br>");
+        }
+    }
+    //added comments to info modal GS 2/1
+    if(comments!=""){
+        var commentArr = Object.values(comments)
+        //console.log(commentArr)
+        for(i=0; i<commentArr.length; i++){
+            $(".brewComments"+key).append("<div><i class='fas fa-comment-alt'></i> <span class='commentHead'>by: "+commentArr[i].name+", on "+commentArr[i].date+"</span><p class='comment'>&quot;"+commentArr[i].comment+"&quot;</p></div><br>");
+        }
+    }
+});
+// added GS 2/1 submit comment button
+$(document).on("click", ".submitComment", function(event){
+    event.preventDefault();
+    brewId = $(this).attr('id'); 
+    var comment = $(".commentInput"+brewId).val().trim();
+    var date = moment().format("llll");
+    console.log(date)
+
+    var newComment = {
+        comment:comment,
+        name: "Guest",
+        date: date,
+    }
+    console.log(newComment)
+    var key = database.ref("brewery/"+brewId+"/comments/").push(newComment).getKey();
+    database.ref("brewery/"+brewId+"/comments/"+key).update({key:key});
+
+    $(".commentInput"+brewId).val("")
+});
+// added GS 2/1 switch between beers and comments
+$(document).on("click", ".ourBeerLink", function(event){
+    event.preventDefault();
+    $(".beerList").show();
+    $(".brewComments").hide()
+});
+$(document).on("click", ".brewInfo", function(event){
+    event.preventDefault();
+    $(".beerList").show();
+    $(".brewComments").hide()
+});
+// added GS 2/1 switch between beers and comments
+$(document).on("click", ".commentsLink", function(event){
+    event.preventDefault();
+    $(".beerList").hide();
+    $(".brewComments").show()
+});
+// added GS 2/1 to show new comments when posting
+database.ref("brewery/").on("child_changed", function(childSnapshot) { 
+    var newRecord=childSnapshot.val();
+    var comments = childSnapshot.val().comments;
+    var key = newRecord.key;
+    var commentArr = Object.values(comments)
+    //console.log(commentArr)
+    
+    $(".brewComments"+key).append("<div><i class='fas fa-comment-alt'></i> <span class='commentHead'>by: "+commentArr[i].name+", on "+commentArr[i].date+"</span><p class='comment'>&quot;"+commentArr[i].comment+"&quot;</p></div><br>");
+});
 
 // API Brewery for all 
 var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/breweries?&key=442d82061216d902ec97f9787c20dd1b';
@@ -164,7 +230,7 @@ $(document).on("click",".showMe", function(){
         });
     });
 })
-
+  
 // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
