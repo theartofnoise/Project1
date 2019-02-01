@@ -45,7 +45,7 @@ $("#submit").on("click", function(event){
 var addressAray = [];
 var nameArray = []
 // function if you want appear all breweries from your dataBase
-database.ref().on("child_added", function(childSnapshot) {    
+database.ref("brewery/").on("child_added", function(childSnapshot) {    
     console.log(childSnapshot.val());
     
     var newRecord=childSnapshot.val();
