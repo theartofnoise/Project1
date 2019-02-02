@@ -101,19 +101,9 @@ database.ref("brewery/").on("child_changed", function(childSnapshot) {
     var comments = childSnapshot.val().comments;
     var key = newRecord.key;
     var commentArr = Object.values(comments)
-    //console.log(commentArr)
     
     $(".brewComments"+key).append("<div><i class='fas fa-comment-alt'></i> <span class='commentHead'>by: "+commentArr[i].name+", on "+commentArr[i].date+"</span><p class='comment'>&quot;"+commentArr[i].comment+"&quot;</p></div><br>");
 });
-
-// API Brewery for all 
-// var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/breweries?&key=442d82061216d902ec97f9787c20dd1b';
-// $.ajax({
-//     url: queryURL,
-//     method: "GET",
-// }).then(function(response){
-//     console.log(response);
-// });
 
 // API beer detail
 $("#submitButtonTypes").on("click", function(event){
@@ -220,13 +210,6 @@ $(document).on("click",".showMe", function(){
             center: {lat: 25.767, lng: -80.203},
             zoom: 11
         });
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
         // Search by zip code
         document.getElementById('zoom').addEventListener('click', function() {
             geocodeAddress(geocoder, map);
@@ -242,7 +225,13 @@ $(document).on("click",".showMe", function(){
                 }
             });
         }
-        codeAddress();
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
 
             // Marker for current location. 
             var currentImage = 'assets/images/here.png'
@@ -280,7 +269,6 @@ $(document).on("click",".showMe", function(){
         var image = 'assets/images/locationMarker.png'
 
         if (status == 'OK') {
-            map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
