@@ -70,7 +70,7 @@ database.ref("brewery/").on("child_added", function(childSnapshot) {
        console.log(nameArray[i]); 
     }
     // added GS 2/1 button and info modal Beers and comments
-    $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span> <hr><div><button type='button' class='btn btn-warning cardBtn brewInfo' data-toggle='modal' data-target='.bd-example-modal-lg"+key+"' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>More Info</button></div> </div></div>  <!-- start of modal --> <div class='modal fade bd-example-modal-lg"+key+"' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'><div class='modal-dialog modal-lg'><div class='modal-content'>   <!-- -->   <div class='card brewery-card'><div class='card-body infoBody'><div class='infoHeader'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-bookmark'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+", "+city+", "+zipCode+"</span></div> <hr><div> <a class='modalLinks ourBeerLink' href='#breweryResults'>Our Craft Beer</a> || <a class='modalLinks commentsLink' href='#breweryResults'>Comments</a></div><hr> <!--beer list to be shown on modal --> <div class='beerList beerList"+key+"'> </div> <!--comments / hidden until clicked --> <div class='brewComments brewComments"+key+"'>Leave us a comment! <hr><form><div class='form-group'><label for='comment'></label><textarea type='text' class='form-control commentInput commentInput"+key+"' id='commentInput"+key+"' placeholder='Your comment' style='height:80px; width:100%'></textarea></div><button id='"+key+"' type='submit' class='btn btn-warning submitComment'>Leave your comment</button></form> <hr> Comments: </div> <!-- -->   </div></div></div>");
+    $(".breweryResults").append("<div class='card brewery-card'><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+city+"</span><span id='zipcode' class='card-link'>ZipCode: "+zipCode+"</span> <hr><div><button type='button' class='btn btn-warning cardBtn brewInfo' data-toggle='modal' data-target='.bd-example-modal-lg"+key+"' id='"+key+"' style='font-size:12px; padding-left:4px; padding-right:4px'>More Info</button></div> </div></div>  <!-- start of modal --> <div class='modal fade bd-example-modal-lg"+key+"' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'><div class='modal-dialog modal-lg'><div class='modal-content'>   <!-- -->   <div class='card brewery-card'><div class='card-body infoBody'><div class='infoHeader'><button type='button' class='close modalclose' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-bookmark'></i> "+name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+address+", "+city+", "+zipCode+"</span></div> <hr><div> <a class='modalLinks ourBeerLink' href='#breweryResults'>Our Craft Beer</a> || <a class='modalLinks commentsLink' href='#breweryResults'>Comments</a></div><hr> <!--beer list to be shown on modal --> <div class='beerList beerList"+key+"'> </div> <!--comments / hidden until clicked --> <div class='brewComments brewComments"+key+"'>Leave us a comment! <hr><form><div class='form-group'><label for='comment'></label><textarea type='text' class='form-control commentInput commentInput"+key+"' id='commentInput"+key+"' placeholder='Your comment' style='height:80px; width:100%'></textarea></div><button id='"+key+"' type='submit' class='btn btn-warning submitComment'>Leave your comment</button></form> <hr> Comments: </div> <!-- -->   </div></div></div>");
 
     //added beers to info modal GS 2/1
     if(beers!=""){
@@ -356,4 +356,32 @@ function codeAddress(strAddress, name, ) {
         }
       };
     
+//NYT api
+$(window).on("load", function() {
+    var api = "e9IuPwrMUuoQRNYHl1fspWvKAgL1En74";
+    var search = "craft beer"
+    console.log(search);
 
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + '&api-key='+ api    ;
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    .then(function(response) {
+        console.log(response);
+        var data = response.response.docs
+        var value = 3;
+        
+
+        console.log(value);
+
+        for(i=0 ; i < value ;i++){           
+            var title = response.response.docs[i].headline.main;
+            var url = response.response.docs[i].web_url;
+            var snippet = response.response.docs[i].snippet;
+            var image = response.response.docs[i].multimedia[0].legacy.xlarge;
+            $(".articles").append("<div class='card'><img class='card-img-top mvpImage' src='https://www.nytimes.com/"+image+"' alt='Card image cap'><div class='card-body'><h5><a href='"+url+"' target='_blank'><i class='fas fa-newspaper'></i> "+title+"</a></h5><p>"+snippet+"</p></div></div>")
+            
+        }
+    });
+});
