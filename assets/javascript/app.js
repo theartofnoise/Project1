@@ -12,35 +12,35 @@ var config = {
 
 database = firebase.database();
 
-/* //Submit button on push Brewery Shop.     DONT NEED THIS IN THIS FILE --- ON reg.js
-$("#submit").on("click", function(event){
-    event.preventDefault();
-    var name = $("#nameInput").val().trim();
-    var address = $("#addressInput").val().trim();
-    var city = $("#cityInput").val().trim();
-    var zipCode = $("#zipCodeInput").val().trim();
+//  //Submit button on push Brewery Shop.     DONT NEED THIS IN THIS FILE --- ON reg.js
+// $("#submit").on("click", function(event){
+//     event.preventDefault();
+//     var name = $("#nameInput").val().trim();
+//     var address = $("#addressInput").val().trim();
+//     var city = $("#cityInput").val().trim();
+//     var zipCode = $("#zipCodeInput").val().trim();
     
-    var breweries = {
-        name: name,
-        address: address,
-        zipCode: zipCode,
-        city: city
-    }
-    // pushing each brewery under breweries in db
-    var key = database.ref("brewery/").push(breweries).getKey();
-    database.ref("brewery/"+key).update({key:key});
+//     var breweries = {
+//         name: name,
+//         address: address,
+//         zipCode: zipCode,
+//         city: city
+//     }
+//     // pushing each brewery under breweries in db
+//     var key = database.ref("brewery/").push(breweries).getKey();
+//     database.ref("brewery/"+key).update({key:key});
 
-    console.log(breweries.name);
-    console.log(breweries.address);
-    console.log(breweries.city);
-    console.log(breweries.zipCode);
-    $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been registered <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
+//     console.log(breweries.name);
+//     console.log(breweries.address);
+//     console.log(breweries.city);
+//     console.log(breweries.zipCode);
+//     $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been registered <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
 
     
-    clearResult = setTimeout(function(){ 
-        $("#resultBrewery").empty(); }, 5000); 
+//     clearResult = setTimeout(function(){ 
+//         $("#resultBrewery").empty(); }, 5000); 
     
-});*/
+// })
 // Create Array for push inside all address and name 
 var addressAray = [];
 var nameArray = []
@@ -137,13 +137,13 @@ database.ref("brewery/").on("child_changed", function(childSnapshot) {
 });
 
 // API Brewery for all 
-var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/breweries?&key=442d82061216d902ec97f9787c20dd1b';
-$.ajax({
-    url: queryURL,
-    method: "GET",
-}).then(function(response){
-    console.log(response);
-});
+// var queryURL = 'https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/breweries?&key=442d82061216d902ec97f9787c20dd1b';
+// $.ajax({
+//     url: queryURL,
+//     method: "GET",
+// }).then(function(response){
+//     console.log(response);
+// });
 
 // API beer detail
 $("#submitButtonTypes").on("click", function(event){
@@ -257,6 +257,27 @@ $(document).on("click",".showMe", function(){
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+        // Search by zip code
+        document.getElementById('zoom').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+
+        function geocodeAddress(geocoder, resultsMap) {
+            var zip = document.getElementById('userInput').value;
+            geocoder.geocode({'address': zip}, function(results, status) {
+                if (status === 'OK') {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location,
+                    icon: icon
+                });
+                } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+        codeAddress();
             // Marker for current location. 
             var currentImage = 'assets/images/here.png'
             var marker = new google.maps.Marker({
@@ -265,7 +286,7 @@ $(document).on("click",".showMe", function(){
                 draggable: true,
                 animation: google.maps.Animation.DROP,
                 icon: currentImage
-            });
+            }); 
             // animation marker
             marker.addListener('click', toggleBounce);
 
@@ -289,7 +310,7 @@ $(document).on("click",".showMe", function(){
                             'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
     }
-    // Function lat to long
+    // Function lat to long Make maker
 function codeAddress(strAddress, name, ) {
     geocoder.geocode( { 'address': strAddress}, function(results, status) {
       // Maker Custom 
