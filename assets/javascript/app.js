@@ -7,40 +7,10 @@ var config = {
     storageBucket: "beerville-70847.appspot.com",
     messagingSenderId: "182244955437"
   };
-  firebase.initializeApp(config);
-
+firebase.initializeApp(config);
 
 database = firebase.database();
 
-//  //Submit button on push Brewery Shop.     DONT NEED THIS IN THIS FILE --- ON reg.js
-// $("#submit").on("click", function(event){
-//     event.preventDefault();
-//     var name = $("#nameInput").val().trim();
-//     var address = $("#addressInput").val().trim();
-//     var city = $("#cityInput").val().trim();
-//     var zipCode = $("#zipCodeInput").val().trim();
-    
-//     var breweries = {
-//         name: name,
-//         address: address,
-//         zipCode: zipCode,
-//         city: city
-//     }
-//     // pushing each brewery under breweries in db
-//     var key = database.ref("brewery/").push(breweries).getKey();
-//     database.ref("brewery/"+key).update({key:key});
-
-//     console.log(breweries.name);
-//     console.log(breweries.address);
-//     console.log(breweries.city);
-//     console.log(breweries.zipCode);
-//     $("#resultBrewery").html(" <div class='card border-dark'><div class='card-heading bg-dark'><h4 class='card-title text-center'>Your bewery has been registered <i class='far fa-check-circle'></i></h4></div><div class='card-body'><h5 id='nameBrewery' class='card-titleBewery'><i class='fas fa-user-circle'></i> "+breweries.name+"</h5><p id='addressBrewery' class='card-text'><i class='fas fa-map-pin'></i> "+breweries.address+"</p><span id='city' class='card-link'><i class='fas fa-city'></i> "+breweries.city+"</span><span id='zipcode' class='card-link'>ZipCode: "+breweries.zipCode+"</span></div>");
-
-    
-//     clearResult = setTimeout(function(){ 
-//         $("#resultBrewery").empty(); }, 5000); 
-    
-// })
 // Create Array for push inside all address and name 
 var addressAray = [];
 var nameArray = []
@@ -267,17 +237,13 @@ $(document).on("click",".showMe", function(){
             geocoder.geocode({'address': zip}, function(results, status) {
                 if (status === 'OK') {
                 resultsMap.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location,
-                    icon: icon
-                });
                 } else {
                 alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
         }
         codeAddress();
+
             // Marker for current location. 
             var currentImage = 'assets/images/here.png'
             var marker = new google.maps.Marker({
@@ -290,10 +256,7 @@ $(document).on("click",".showMe", function(){
             // animation marker
             marker.addListener('click', toggleBounce);
 
-            infoWindow.setPosition(pos);
-            // infoWindow.setContent('Here you are.');
-            infoWindow.open(map,marker);
-            map.setCenter(pos);
+
             }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
             });
@@ -311,50 +274,50 @@ $(document).on("click",".showMe", function(){
     infoWindow.open(map);
     }
     // Function lat to long Make maker
-function codeAddress(strAddress, name, ) {
-    geocoder.geocode( { 'address': strAddress}, function(results, status) {
-      // Maker Custom 
-      var image = 'assets/images/locationMarker.png'
+    function codeAddress(strAddress, name, ) {
+        geocoder.geocode( { 'address': strAddress}, function(results, status) {
+        // Maker Custom 
+        var image = 'assets/images/locationMarker.png'
 
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            draggable: true,
+        if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                draggable: true,
                 animation: google.maps.Animation.DROP,
-            icon: image
-        });
-        var contentString = '<h1>'+name+'</h1>';
+                icon: image
+            });
+            var contentString = '<h1>'+name+'</h1>';
 
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
+            var infowindow = new google.maps.InfoWindow({
+            content: contentString
+            });
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
         });
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
   }
 
-    //more and less buttons for beer types
-    function readMoreLess(x) {
-        var dots = document.getElementById("dots"+x);
-        var moreText = document.getElementById("more"+x);
-        var btnText = document.getElementById("readMore"+x);
-      
-        if (dots.style.display === "none") {
-          dots.style.display = "inline";
-          btnText.innerHTML = "Read more"; 
-          moreText.style.display = "none";
-        } else {
-          dots.style.display = "none";
-          btnText.innerHTML = "Read less"; 
-          moreText.style.display = "inline";
-        }
-      };
+//more and less buttons for beer types
+function readMoreLess(x) {
+    var dots = document.getElementById("dots"+x);
+    var moreText = document.getElementById("more"+x);
+    var btnText = document.getElementById("readMore"+x);
+    
+    if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more"; 
+        moreText.style.display = "none";
+    } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less"; 
+        moreText.style.display = "inline";
+    }
+};
     
 //NYT api
 $(window).on("load", function() {
