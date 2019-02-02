@@ -191,3 +191,49 @@ footer {
 .showMe{
     cursor: pointer;
 }
+
+/* GS 2/1 added to style information modal  */
+.beerList{
+    line-height: 150%;
+}
+.brewComments{
+    line-height: 150%;
+}
+.comment{
+    font-style: italic;
+}
+.commentHead{
+    font-size: 90% !important;
+}
+.brewComments{
+    display: none;
+}
+.infoBody{
+    background-image: url(../images/brewery.png);
+    background-size: 150% 100%;
+}
+.details{
+    font-style: italic;
+    font-size: 85% !important;
+}
+.infoHeader{
+    background-color: rgba(224, 168, 0, 0.76);
+    margin: -20px;
+    margin-bottom: -17px;
+    padding: 15px 0px 15px 22px;
+}
+.beerType{
+    font-size: 90% !important;
+}
+a.modalLinks:hover{
+    color:black
+}
+a.modalLinks:active{
+    color:black
+}
+a.modalLinks:visited{
+    color:black
+}
+a.modalLinks:link{
+    color:black
+}
