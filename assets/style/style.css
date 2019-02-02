@@ -237,3 +237,6 @@ a.modalLinks:visited{
 a.modalLinks:link{
     color:black
 }
+.modalclose{
+    margin-right: 20px;
+}
