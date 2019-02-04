@@ -1,79 +1,74 @@
-
+/* General html and body */
 html {
     position: relative;
     min-height: 100%;
-  }
+    max-width: 100%;
+}
 
-  body {
+body {
     min-height: 100%;
+    max-width: 100%;
     margin: 0;
     padding: 0;
-    font-size: 16px; 
-    font-family: 'Montserrat', sans-serif;
+    font-size: 18px; 
+    font-family: 'Raleway', sans-serif;
     color: black;
     margin-bottom: 60px;
+    line-height: 1.5;
 }
 
-#map {
-    height: 600px;
-}
-
-.quote {
-    font-size: 25px;
-    font-style: italic;
-}
-
-input {
-    width: 180px;
-    height: 36px;
-    padding: 5px;
-    margin: 5px;
-}
-
-#submit-btn {
-    width: 100px;
-    padding: 5px;
-}
-
-.card-title {
-    color: white;
-    font-size: 22px;
-    padding-left: 30px;
-    padding-top: 10px;
-}
-#more1, #more2, #more3 {display: none;}
-#readMore1, #readMore2, #readMore3 {
-    margin-top: 15px;
+/* Navbar section*/
+.navbar {
+    background-color: white !important;
+    margin: 0px;
+    padding: 0px;
 }
 
 .nav-item {
     font-size: 18px;
-    font-weight: bold;
     color: black !important;
-}
-#banner {
-    background-position: center bottom;
+    font-weight: 300px !important;
 }
 
-input {
-    caret-color: orange;
-}
-.navbar {
-    background-color: white !important;
+#logo {
+    width: 180px;
+    padding-left: 20px;
 }
 
+/* Our mission section*/
+.mission {
+    font-family: 'Raleway', sans-serif;
+    padding-top: 10px;
+}
+
+.mission-text {
+    width: 80%;
+    display: inline-block;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* The typewriter h1 sections*/
 .typewriter h1 {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     display: inline-block;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid orange; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .10em; /* Adjust as needed */
+    letter-spacing: .10em; 
     animation: 
-        typing 3.5s steps(30, end),
-        blink-caret .5s step-end infinite;
+        typing 6s, /* Typing speed */
+        blink-caret .5s step-end infinite; /* Typewriter cursor speed */
 }
   
 /* The typing effect */
@@ -88,51 +83,76 @@ input {
     50% { border-color: orange }
 }
 
+/* Brewery search section*/
+input {
+    width: 180px;
+    height: 36px;
+    padding: 5px;
+    margin: 5px;
+    caret-color: orange;
+}
+
+.btn {
+    font-weight:bold;
+    padding: 5px;
+    width: 100px;
+    background-color: black !important;
+    color: white !important;
+    border-color: black !important;
+}
+
+#map {
+    height: 600px;
+}
+
 .breweryResults {
     height: 550px;
     overflow-y: scroll;
 }
-  
-#logo {
-    width: 150px;
-}
 
-.mvpTitle {
+.card-title {
     color: black;
     font-weight: bold;
-    margin-left: 0px;
-    padding-left: 0px;
-}
-
-.mvpImage {
-    height: 260px;
-}
-
-#beerTypes {
+    font-size: 22px;
+    padding-left: 30px;
     padding-top: 10px;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%; 
-    height: 60px;
-    line-height: 60px;
-    background-color: rgb(238, 197, 62);
-    font-weight: bold;
-  }
+#addressBrewery {
+     margin-bottom: 0px;
+ }
 
-/* Result for Beer */
-#beerResults{
-    padding: 20px;
+#nameBrewery {
+    margin-bottom: 0px;
 }
+
+/* Stay in the loop section */
+a {
+    color: black;
+    font-weight: bold;
+}
+
+/* Beer search section */
+
+.beer-card {
+    background-color: black !important;
+    color: white !important;
+}
+
+#beer-search {
+    padding-top: 10px;
+}
+
+#beerResults{
+    padding-top:20px;
+}
+
 #beerResults img{
-    width: 100px;
+    width: 150px;
     border-radius: 20px;
     float:left;
 }
+
 #beerResults h3{
     display: inline-block;
     margin-left: 15px;
@@ -149,36 +169,15 @@ footer {
 #beerResults p{
     padding-bottom: 10px;
 }
+
 #beerResults h1{
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
     margin-top: 10px;
 }
-/* brevery Register */
-.breweryRegister{
-    padding: 20px;
-}
 
-.breweryRegister h1{
-    margin-bottom: 10px;
-    font-size: 30px;
-}
-
-.card-titleBewery{
-    color: black;
-    font-size: 22px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-#addressBrewery{
-    padding-bottom: 10px;
-}
-
-.brewery-card{
-    margin: 10px;
-}
-/* other beer card */
+/* Similar beers section */
 #otherResults img {
     width: 100px;
     border-radius: 20px;
@@ -208,10 +207,7 @@ footer {
 .brewComments{
     display: none;
 }
-.infoBody{
-    background-image: url(../images/brewery.png);
-    background-size: 150% 100%;
-}
+
 .details{
     font-style: italic;
     font-size: 85% !important;
@@ -240,3 +236,44 @@ a.modalLinks:link{
 .modalclose{
     margin-right: 20px;
 }
+.card-heading {
+    background-color: rgb(238, 197, 62) !important;
+}
+
+h5 h4{
+margin-top: 5px;
+}
+
+.ourBeerLink {
+    font-weight: bold;
+}
+
+.commentsLink {
+font-weight: bold;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%; 
+    height: 60px;
+    line-height: 60px;
+    background-color: rgb(238, 197, 62);
+}
+
+/* Responsivness */
+@media screen and (max-width: 320px) {
+#logo {
+    width: 150px;
+}
+}
+
+@media screen and (max-width: 1024px) {
+.banner { 
+    margin-top: 65px; 
+}
+}
+
