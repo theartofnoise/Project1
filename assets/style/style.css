@@ -132,6 +132,10 @@ a {
     font-weight: bold;
 }
 
+.mvpImage {
+    height: 250px;
+}
+
 /* Beer search section */
 
 .beer-card {
